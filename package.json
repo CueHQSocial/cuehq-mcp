@@ -1,0 +1,45 @@
+{
+  "name": "cuehq-mcp",
+  "mcpName": "social.cuehq/cuehq",
+  "version": "0.1.1",
+  "description": "run the cuehq mcp server as a local command: a stdio bridge to https://www.cuehq.social/mcp for agents that start mcp servers themselves.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "cuehq-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "homepage": "https://github.com/cuehqsocial/cuehq-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuehqsocial/cuehq-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cuehqsocial/cuehq-mcp/issues"
+  },
+  "keywords": [
+    "mcp",
+    "cuehq",
+    "model-context-protocol"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check-version": "node -e \"const v=require('./package.json').version,s=require('./server.json'),q=String.fromCharCode(39),i=require('fs').readFileSync('src/index.ts','utf8');if(s.version!==v||s.packages[0].version!==v||!i.includes('VERSION = '+q+v+q))throw new Error('version mismatch, expected '+v);console.log('version '+v+' agrees in package.json, server.json and src/index.ts')\"",
+    "prepack": "npm run check-version && npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/client": "2.3.1",
+    "@modelcontextprotocol/server": "2.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.5",
+    "typescript": "6.0.3"
+  }
+}

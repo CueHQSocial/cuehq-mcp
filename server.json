@@ -1,0 +1,45 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "social.cuehq/cuehq",
+  "title": "CueHQ",
+  "description": "Live threads asking for what you sell, with reply drafts in your voice. CueHQ never posts.",
+  "version": "0.1.1",
+  "websiteUrl": "https://www.cuehq.social/agents",
+  "repository": {
+    "url": "https://github.com/cuehqsocial/cuehq-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://www.cuehq.social/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <your CueHQ key, from Settings, Agents, New key>",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "cuehq-mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "CUEHQ_API_KEY",
+          "description": "Your CueHQ key, from Settings, Agents, New key. It acts as you, so keep it secret.",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
