@@ -2,7 +2,7 @@
   "name": "cuehq-mcp",
   "mcpName": "social.cuehq/cuehq",
   "version": "0.1.1",
-  "description": "run the cuehq mcp server as a local command: a stdio bridge to https://www.cuehq.social/mcp for agents that start mcp servers themselves.",
+  "description": "Run the CueHQ MCP server as a local command: a stdio bridge to https://www.cuehq.social/mcp for agents that start MCP servers themselves.",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -32,7 +32,11 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "check-version": "node -e \"const v=require('./package.json').version,s=require('./server.json'),q=String.fromCharCode(39),i=require('fs').readFileSync('src/index.ts','utf8');if(s.version!==v||s.packages[0].version!==v||!i.includes('VERSION = '+q+v+q))throw new Error('version mismatch, expected '+v);console.log('version '+v+' agrees in package.json, server.json and src/index.ts')\"",
-    "prepack": "npm run check-version && npm run build"
+    "prepack": "npm run check-version && npm run build",
+    "presnapshot": "npm run build",
+    "snapshot": "node scripts/snapshot.mjs",
+    "pretest": "npm run build",
+    "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/client": "2.3.1",

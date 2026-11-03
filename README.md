@@ -42,8 +42,10 @@ A key acts as you, so keep it out of shared files. Revoke it under Settings, Age
 
 Environment:
 
-- `CUEHQ_API_KEY`: required. Your key.
+- `CUEHQ_API_KEY`: your key. Every tool call needs it; without it, see below.
 - `CUEHQ_MCP_URL`: optional. Another endpoint on www.cuehq.social, or a localhost URL for testing.
+
+Without a key the command still starts: it answers `initialize` and `tools/list` from a bundled snapshot of the server's tools, and every tool call returns an error that says where a key comes from.
 
 Node 20 or later.
 
